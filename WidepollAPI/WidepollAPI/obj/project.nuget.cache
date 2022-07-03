@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "DH03rGn2rqyTjkx0x7TZJuIIacNwRB3+dgtOaGccIftjy+06kfrGoj48/KHftBRJ3rUAozDHGCk9uqL7pBUQkw==",
+  "success": true,
+  "projectFilePath": "/Users/marty/Git/widepoll2/server_new/WidepollAPI/WidepollAPI/WidepollAPI.csproj",
+  "expectedPackageFiles": [
+    "/Users/marty/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "/Users/marty/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/Users/marty/.nuget/packages/swashbuckle.aspnetcore/6.2.3/swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "/Users/marty/.nuget/packages/swashbuckle.aspnetcore.swagger/6.2.3/swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "/Users/marty/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.2.3/swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "/Users/marty/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.2.3/swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
