@@ -1,9 +1,10 @@
-﻿using System;
-namespace WidepollAPI.Ports
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace WidepollAPI.Ports;
+
+public class UserDto
 {
-    public class UserDto
-    {
-        public string Name { get; set; }
-    }
+    [Required]
+    public string Name { get; set; }
 }
 

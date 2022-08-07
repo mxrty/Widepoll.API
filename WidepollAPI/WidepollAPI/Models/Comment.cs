@@ -8,6 +8,8 @@ public class Comment
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
     public string Id { get; set; }
+    [BsonIgnore]
+    public DateTime? CreatedAt => Id is not null ? new ObjectId(Id).CreationTime : null;
     public string Body { get; set; }
     public User Author { get; set; }
     public string PostId { get; set; }

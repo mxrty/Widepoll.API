@@ -5,11 +5,11 @@ namespace WidepollAPI.DataAccess;
 
 public interface IDBWriter
 {
-    public Task Insert(User user);
-    public Task Insert(Statement statement);
-    public Task Insert(Post post);
-    public Task Insert(Comment comment);
-    public Task Insert(Like like);
+    public Task<User> InsertAsync(User user);
+    public Task<Statement> InsertAsync(Statement statement);
+    public Task<Post> InsertAsync(Post post);
+    public Task<Comment> InsertAsync(Comment comment);
+    public Task<Like> InsertAsync(Like like);
     public Task AddToParent(Comment parent, string childId);
 }
 
@@ -17,6 +17,7 @@ public interface IDBReader
 {
     public Task<User?> GetUser(string id);
     public Task<Post?> GetPost(string id);
+    public Task<IReadOnlyCollection<Post>> GetRecentPosts(int quantity);
     public Task<Comment?> GetComment(string id);
     public Task<Like?> GetLike(string id);
 }
@@ -69,35 +70,49 @@ public class MongoDB : IDBReader, IDBWriter
         return result.SingleOrDefault();
     }
 
+    public async Task<IReadOnlyCollection<Post>> GetRecentPosts(int quantity)
+    {
+        var result = posts.AsQueryable()
+            .OrderByDescending(p => p.CreatedAt.Value)
+            .Take(quantity);
+
+        return result.ToList();
+    }
+
     public async Task<User?> GetUser(string id)
     {
         var result = await users.FindAsync(u => u.Id == id);
         return result.SingleOrDefault();
     }
 
-    public async Task Insert(User user)
+    public async Task<User> InsertAsync(User user)
     {
         await users.InsertOneAsync(user);
+        return user;
     }
 
-    public async Task Insert(Statement statement)
+    public async Task<Statement> InsertAsync(Statement statement)
     {
         await statements.InsertOneAsync(statement);
+        return statement;
     }
 
-    public async Task Insert(Post post)
+    public async Task<Post> InsertAsync(Post post)
     {
         await posts.InsertOneAsync(post);
+        return post;
     }
 
-    public async Task Insert(Comment comment)
+    public async Task<Comment> InsertAsync(Comment comment)
     {
         await comments.InsertOneAsync(comment);
+        return comment;
     }
 
-    public async Task Insert(Like like)
+    public async Task<Like> InsertAsync(Like like)
     {
         await likes.InsertOneAsync(like);
+        return like;
     }
 }
 
