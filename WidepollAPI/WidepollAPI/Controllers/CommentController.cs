@@ -24,7 +24,7 @@ public class CommentController : ControllerBase
     public async Task<ActionResult<Comment>> GetComment(string id)
     {
 
-        var result = await _reader.GetComment(id);
+        var result = await _reader.GetByIdAsync<Comment>(id);
         if (result is null) return NotFound();
         return result;
     }
@@ -35,20 +35,20 @@ public class CommentController : ControllerBase
         if (dto.ParentCommentId is null && dto.PostId is null) return BadRequest($"Comment must have a parent");
         if (dto.ParentCommentId is not null && dto.PostId is not null) return BadRequest($"Comment can only have one parent");
 
-        var user = await _reader.GetUser(authorId);
+        var user = await _reader.GetByIdAsync<User>(authorId);
         if (user is null) return BadRequest($"User {authorId} was not found. Must be a valid user.");
 
         Comment? parentComment = null;
         if (dto.ParentCommentId is not null)
         {
-            parentComment = await _reader.GetComment(dto.ParentCommentId);
+            parentComment = await _reader.GetByIdAsync<Comment>(dto.ParentCommentId);
             if (parentComment is null) return BadRequest($"Comment {dto.ParentCommentId} was not found. Must be a valid comment.");
         }
 
         Post? parentPost = null;
         if (dto.PostId is not null)
         {
-            parentPost = await _reader.GetPost(dto.PostId);
+            parentPost = await _reader.GetByIdAsync<Post>(dto.PostId);
             if (parentPost is null) return BadRequest($"Post {dto.PostId} was not found. Must be a valid post.");
         }
 
@@ -56,15 +56,15 @@ public class CommentController : ControllerBase
         {
             Author = user,
             Body = dto.Body,
-            ParentCommentId = parentComment.Id,
-            PostId = parentPost.Id
+            ParentCommentId = parentComment?.ID,
+            PostId = parentPost?.ID
         };
 
         var writtenComment = await _writer.InsertAsync(comment);
 
         if (parentComment is not null)
         {
-            await _writer.AddToParent(parentComment, writtenComment.Id);
+            await _writer.AddToParent(parentComment, writtenComment.ID);
         }
 
         return Ok();

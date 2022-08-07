@@ -64,6 +64,7 @@ C:/Users/MS/Projects/widepoll2/server_new/WidepollAPI/WidepollAPI/obj/Debug/net6
 /Users/marty/Git/Widepoll.API/WidepollAPI/WidepollAPI/bin/Debug/net6.0/MongoDB.Bson.dll
 /Users/marty/Git/Widepoll.API/WidepollAPI/WidepollAPI/bin/Debug/net6.0/MongoDB.Driver.dll
 /Users/marty/Git/Widepoll.API/WidepollAPI/WidepollAPI/bin/Debug/net6.0/MongoDB.Driver.Core.dll
+/Users/marty/Git/Widepoll.API/WidepollAPI/WidepollAPI/bin/Debug/net6.0/MongoDB.Entities.dll
 /Users/marty/Git/Widepoll.API/WidepollAPI/WidepollAPI/bin/Debug/net6.0/MongoDB.Libmongocrypt.dll
 /Users/marty/Git/Widepoll.API/WidepollAPI/WidepollAPI/bin/Debug/net6.0/SharpCompress.dll
 /Users/marty/Git/Widepoll.API/WidepollAPI/WidepollAPI/bin/Debug/net6.0/Swashbuckle.AspNetCore.Swagger.dll

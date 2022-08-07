@@ -24,7 +24,7 @@ public class UserController : ControllerBase
     public async Task<ActionResult<User>> GetUser(string id)
     {
 
-        var result = await _reader.GetUser(id);
+        var result = await _reader.GetByIdAsync<User>(id);
         if (result is null) return NotFound();
         return result;
     }
@@ -34,6 +34,6 @@ public class UserController : ControllerBase
     {
         var user = new User { Name = dto.Name };
         var createdUser = await _writer.InsertAsync(user);
-        return Ok(createdUser.Id);
+        return Ok(createdUser.ID);
     }
 }

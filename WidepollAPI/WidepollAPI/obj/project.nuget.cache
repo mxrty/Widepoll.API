@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "sefs7Twjqq8ukohTuW/47gizCSRPrG/yLz/y0tU78iBpuDuhIHta6NM/5erqyujNWYKv+txegRcGjIS+uKDolg==",
+  "dgSpecHash": "Ic2YWg9No62J7ll/Xr25+jZtXq0Rg3c/86NScCZ5xniuxnKXYd6F12FGr7Ud8sb1CpEuDjmZxGqTpwhcJqXZNg==",
   "success": true,
   "projectFilePath": "/Users/marty/Git/Widepoll.API/WidepollAPI/WidepollAPI/WidepollAPI.csproj",
   "expectedPackageFiles": [
     "/Users/marty/.nuget/packages/dnsclient/1.6.1/dnsclient.1.6.1.nupkg.sha512",
+    "/Users/marty/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
     "/Users/marty/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "/Users/marty/.nuget/packages/microsoft.netcore.platforms/5.0.0/microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "/Users/marty/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
@@ -12,6 +13,7 @@
     "/Users/marty/.nuget/packages/mongodb.bson/2.17.0/mongodb.bson.2.17.0.nupkg.sha512",
     "/Users/marty/.nuget/packages/mongodb.driver/2.17.0/mongodb.driver.2.17.0.nupkg.sha512",
     "/Users/marty/.nuget/packages/mongodb.driver.core/2.17.0/mongodb.driver.core.2.17.0.nupkg.sha512",
+    "/Users/marty/.nuget/packages/mongodb.entities/20.26.5/mongodb.entities.20.26.5.nupkg.sha512",
     "/Users/marty/.nuget/packages/mongodb.libmongocrypt/1.5.4/mongodb.libmongocrypt.1.5.4.nupkg.sha512",
     "/Users/marty/.nuget/packages/sharpcompress/0.30.1/sharpcompress.0.30.1.nupkg.sha512",
     "/Users/marty/.nuget/packages/swashbuckle.aspnetcore/6.2.3/swashbuckle.aspnetcore.6.2.3.nupkg.sha512",

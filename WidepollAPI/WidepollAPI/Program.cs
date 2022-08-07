@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-BuilderExtensions.ConfigureRepositories(builder.Services);
+BuilderExtensions.ConfigureDataAccess(builder.Services);
 
 var app = builder.Build();
 

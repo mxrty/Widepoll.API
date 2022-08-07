@@ -9,6 +9,7 @@
       "WidepollAPI/1.0.0": {
         "dependencies": {
           "MongoDB.Driver": "2.17.0",
+          "MongoDB.Entities": "20.26.5",
           "Swashbuckle.AspNetCore": "6.2.3"
         },
         "runtime": {
@@ -26,6 +27,7 @@
           }
         }
       },
+      "Microsoft.CSharp/4.7.0": {},
       "Microsoft.Extensions.ApiDescription.Server/3.0.0": {},
       "Microsoft.NETCore.Platforms/5.0.0": {},
       "Microsoft.OpenApi/1.2.3": {
@@ -115,6 +117,18 @@
             "rid": "win",
             "assetType": "native",
             "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "MongoDB.Entities/20.26.5": {
+        "dependencies": {
+          "Microsoft.CSharp": "4.7.0",
+          "MongoDB.Driver": "2.17.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/MongoDB.Entities.dll": {
+            "assemblyVersion": "20.26.5.0",
+            "fileVersion": "20.26.5.0"
           }
         }
       },
@@ -213,6 +227,13 @@
       "path": "dnsclient/1.6.1",
       "hashPath": "dnsclient.1.6.1.nupkg.sha512"
     },
+    "Microsoft.CSharp/4.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pTj+D3uJWyN3My70i2Hqo+OXixq3Os2D1nJ2x92FFo6sk8fYS1m1WLNTs0Dc1uPaViH0YvEEwvzddQ7y4rhXmA==",
+      "path": "microsoft.csharp/4.7.0",
+      "hashPath": "microsoft.csharp.4.7.0.nupkg.sha512"
+    },
     "Microsoft.Extensions.ApiDescription.Server/3.0.0": {
       "type": "package",
       "serviceable": true,
@@ -261,6 +282,13 @@
       "sha512": "sha512-bQLdFZNywlApJ5H5KnFXxGik3dZ/VOIUQ7YQniZd9eNmNZFEwEMr+/yoCJ8FigyzOd7iKYOLpmUWGwG2M2e2aQ==",
       "path": "mongodb.driver.core/2.17.0",
       "hashPath": "mongodb.driver.core.2.17.0.nupkg.sha512"
+    },
+    "MongoDB.Entities/20.26.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fZgsDxcw7uwbBI9UtQhcC4ff+cwmye45HLmMdqTIRgXAnnAC08LShuUqw6sL1HGSrqjVq0YpRLJ6ftCYE14Qhw==",
+      "path": "mongodb.entities/20.26.5",
+      "hashPath": "mongodb.entities.20.26.5.nupkg.sha512"
     },
     "MongoDB.Libmongocrypt/1.5.4": {
       "type": "package",
