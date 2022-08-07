@@ -1,10 +1,10 @@
-﻿namespace WidepollAPI.Ports
+﻿using System;
+namespace WidepollAPI.Ports;
+
+public class StatementDto
 {
-    public class StatementDto
-    {
-        public string Title { get; set; }
-        public Guid Author { get; set; }
-        public string Description { get; set; }
-        public DateTimeOffset CreatedAt { get; set; }
-    }
+    public string Left { get; set; }
+    public string Link { get; set; }
+    public string Right { get; set; }
 }
+

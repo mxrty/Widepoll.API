@@ -1,11 +1,10 @@
-using WidepollAPI.Repositories;
+using WidepollAPI.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 BuilderExtensions.ConfigureRepositories(builder.Services);

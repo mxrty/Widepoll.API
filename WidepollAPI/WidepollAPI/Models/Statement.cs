@@ -1,29 +1,16 @@
-using WidepollAPI.Ports;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
-namespace WidepollAPI
+namespace WidepollAPI.Models;
+
+public class Statement
 {
-    public class Statement
-    {
-        public Guid Id { get; set; }
-        public Guid Author { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public Guid[] LikeIds { get; set; }
-        public Guid[] CommentIds { get; set; }
-        public DateTimeOffset CreatedAt { get; set; }
-
-
-        public Statement()
-        {
-            Id = Guid.NewGuid();
-        }
-
-        public void Restore(StatementDto dto)
-        {
-            Author = dto.Author;
-            Title = dto.Title;
-            Description = dto.Description;
-            CreatedAt = dto.CreatedAt;
-        }
-    }
+    [BsonId]
+    [BsonRepresentation(BsonType.ObjectId)]
+    public string Id { get; set; }
+    public User Author { get; set; }
+    public string Left { get; set; }
+    public string Link { get; set; }
+    public string Right { get; set; }
 }
+

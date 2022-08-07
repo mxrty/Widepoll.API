@@ -1,9 +1,15 @@
-﻿namespace WidepollAPI.Models
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+
+namespace WidepollAPI.Models;
+
+public class Like
 {
-    public class Like
-    {
-        public Guid Id { get; set; }
-        public Guid Author { get; set; }
-        public DateTimeOffset CreatedAt { get; set; }
-    }
+    [BsonId]
+    [BsonRepresentation(BsonType.ObjectId)]
+    public string Id { get; set; }
+    public string AuthorId { get; set; }
+    public string PostId { get; set; }
+    public string CommentId { get; set; }
 }
+
