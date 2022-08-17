@@ -13,6 +13,7 @@ public interface IDBWriter
 public interface IDBReader
 {
     public Task<T?> GetByIdAsync<T>(string id) where T : DomainEntity;
+    public Task<IReadOnlyCollection<Comment>> GetCommentsByParentPostIdAsync(string id);
     public IReadOnlyCollection<Post> GetRecentPosts(int quantity);
 }
 
@@ -42,5 +43,10 @@ public class MongoDB : IDBReader, IDBWriter
     public IReadOnlyCollection<Post> GetRecentPosts(int quantity)
     {
         return DB.Queryable<Post>().OrderByDescending(p => p.CreatedOn).Take(quantity).ToList();
+    }
+
+    public async Task<IReadOnlyCollection<Comment>> GetCommentsByParentPostIdAsync(string id)
+    {
+        return await DB.Find<Comment>().ManyAsync(x => x.PostId == id);
     }
 }

@@ -23,10 +23,17 @@ public class CommentController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<Comment>> GetComment(string id)
     {
-
         var result = await _reader.GetByIdAsync<Comment>(id);
         if (result is null) return NotFound();
-        return result;
+        return Ok(result);
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<IReadOnlyCollection<Comment>>> GetCommentsForPost(string id)
+    {
+        var results = await _reader.GetCommentsByParentPostIdAsync(id);
+        if (results is null || !results.Any()) return NotFound();
+        return Ok(results);
     }
 
     [HttpPut]
