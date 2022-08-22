@@ -1,5 +1,4 @@
 ﻿<Properties StartupConfiguration="{29AE3728-98F7-421E-87C2-3FCC840FE354}|WidepollAPI">
-  <MonoDevelop.Ide.ItemProperties.WidepollAPI PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.Workbench ActiveDocument="WidepollAPI/Repositories/LikeRepository.cs">
     <Files>
       <File FileName="WidepollAPI/Repositories/LikeRepository.cs" Line="29" Column="1" IsPinned="True" />
@@ -32,5 +31,7 @@
   <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Test.Widepoll.IntegrationTests FirstBuild="True" />
+  <MonoDevelop.Ide.ItemProperties.App.WidepollAPI PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints />
 </Properties>

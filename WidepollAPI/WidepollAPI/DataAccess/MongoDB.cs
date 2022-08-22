@@ -7,7 +7,9 @@ namespace WidepollAPI.DataAccess;
 public interface IDBWriter
 {
     public Task<T> InsertAsync<T>(T entity) where T : DomainEntity;
-    public Task<Comment> AddToParent(Comment parent, string childId);
+    public Task<Comment> AddCommentIdToParentCommentAsync(Comment parent, string childId);
+    public Task<Comment> AddLikeToCommentAsync(Comment parent, Like like);
+    public Task<Post> AddLikeToPostAsync(Post parent, Like like);
 }
 
 public interface IDBReader
@@ -30,7 +32,7 @@ public class MongoDB : IDBReader, IDBWriter
         return entity;
     }
 
-    public async Task<Comment> AddToParent(Comment parent, string childId)
+    public async Task<Comment> AddCommentIdToParentCommentAsync(Comment parent, string childId)
     {
         return await DB.UpdateAndGet<Comment>().MatchID(parent.ID).Modify(c => c.Push(comment => comment.ReplyIds, childId)).ExecuteAsync();
     }
@@ -48,5 +50,15 @@ public class MongoDB : IDBReader, IDBWriter
     public async Task<IReadOnlyCollection<Comment>> GetCommentsByParentPostIdAsync(string id)
     {
         return await DB.Find<Comment>().ManyAsync(x => x.PostId == id);
+    }
+
+    public Task<Comment> AddLikeToCommentAsync(Comment parent, Like like)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<Post> AddLikeToPostAsync(Post parent, Like like)
+    {
+        throw new NotImplementedException();
     }
 }

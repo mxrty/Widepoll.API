@@ -28,7 +28,7 @@ public class CommentController : ControllerBase
         return Ok(result);
     }
 
-    [HttpGet]
+    [HttpGet("Post")]
     public async Task<ActionResult<IReadOnlyCollection<Comment>>> GetCommentsForPost(string id)
     {
         var results = await _reader.GetCommentsByParentPostIdAsync(id);
@@ -71,7 +71,7 @@ public class CommentController : ControllerBase
 
         if (parentComment is not null)
         {
-            await _writer.AddToParent(parentComment, writtenComment.ID);
+            await _writer.AddCommentIdToParentCommentAsync(parentComment, writtenComment.ID);
         }
 
         return Ok();

@@ -7,6 +7,6 @@ public class Comment : DomainEntity
     public string PostId { get; set; }
     public string ParentCommentId { get; set; }
     public string[] ReplyIds { get; set; } = Array.Empty<string>();
-    public string[] LikeIds { get; set; } = Array.Empty<string>();
+    public Like[] Likes { get; set; } = Array.Empty<Like>();
 }
 

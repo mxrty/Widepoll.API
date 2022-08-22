@@ -5,10 +5,11 @@ VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WidepollAPI", "WidepollAPI\WidepollAPI.csproj", "{29AE3728-98F7-421E-87C2-3FCC840FE354}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2C038CC9-9709-4D9F-B535-C43B508D0C39}"
-	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-	EndProjectSection
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App", "App", "{824385BB-4E15-4961-9784-C7F923EEF6A5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{A8050677-2E9F-479E-966A-C2E54A9959BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Widepoll.IntegrationTests", "Widepoll.IntegrationTests\Widepoll.IntegrationTests.csproj", "{70C2ED7C-9808-4243-BBDE-8122A5102469}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,11 +21,19 @@ Global
 		{29AE3728-98F7-421E-87C2-3FCC840FE354}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29AE3728-98F7-421E-87C2-3FCC840FE354}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29AE3728-98F7-421E-87C2-3FCC840FE354}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70C2ED7C-9808-4243-BBDE-8122A5102469}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70C2ED7C-9808-4243-BBDE-8122A5102469}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70C2ED7C-9808-4243-BBDE-8122A5102469}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70C2ED7C-9808-4243-BBDE-8122A5102469}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6250B14C-126B-4C69-9BD8-7593F1ADC029}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{29AE3728-98F7-421E-87C2-3FCC840FE354} = {824385BB-4E15-4961-9784-C7F923EEF6A5}
+		{70C2ED7C-9808-4243-BBDE-8122A5102469} = {A8050677-2E9F-479E-966A-C2E54A9959BB}
 	EndGlobalSection
 EndGlobal
