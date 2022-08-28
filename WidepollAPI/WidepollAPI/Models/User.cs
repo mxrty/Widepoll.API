@@ -7,7 +7,7 @@ public class User : DomainEntity, IEquatable<User>
     public bool Equals(User? other)
     {
         if (other is null) return false;
-        return Name == other.Name;
+        return (Name is null && other.Name is null || Name == other.Name);
     }
 }
 

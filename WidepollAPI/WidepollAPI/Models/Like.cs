@@ -9,7 +9,9 @@ public class Like : DomainEntity, IEquatable<Like>
     public bool Equals(Like? other)
     {
         if (other is null) return false;
-        return Author.Equals(other.Author) && PostId == other.PostId && CommentId == other.CommentId;
+        return (Author is null && other.Author is null || Author.Equals(other.Author))
+            && (PostId is null && other.PostId is null || PostId == other.PostId)
+            && (CommentId is null && other.CommentId is null || CommentId == other.CommentId);
     }
 }
 

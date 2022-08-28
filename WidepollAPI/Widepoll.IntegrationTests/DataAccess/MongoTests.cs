@@ -16,14 +16,11 @@ public class MongoTests
     }
 
     [OneTimeSetUp]
-    public void Setup()
+    public async Task Setup()
     {
-        Task.Run(async () =>
-        {
-            await DB.InitAsync("test",
+        await DB.InitAsync("test",
             MongoClientSettings.FromConnectionString(
             "mongodb+srv://admin:deUsKxSO8O2zBxSr@cluster0.j8fil.mongodb.net/?retryWrites=true&w=majority"));
-        }).GetAwaiter().GetResult();
         mongo = new MongoStore();
     }
 
@@ -126,10 +123,11 @@ public class MongoTests
         var comment2 = await GenerateComment(user);
 
         await mongo.AddCommentIdToParentCommentAsync(parentComment, comment1.ID);
-        var fetchedComment = await mongo.AddCommentIdToParentCommentAsync(parentComment, comment2.ID);
+        await mongo.AddCommentIdToParentCommentAsync(parentComment, comment2.ID);
+        var fetchedComment = await mongo.GetByIdAsync<Comment>(parentComment.ID);
 
         Assert.That(fetchedComment, Is.Not.Null);
-        Assert.That(fetchedComment.ReplyIds.Length, Is.EqualTo(2));
+        Assert.That(fetchedComment.ReplyIds.Count, Is.EqualTo(2));
         Assert.That(fetchedComment.ReplyIds.Contains(comment1.ID), Is.True);
         Assert.That(fetchedComment.ReplyIds.Contains(comment2.ID), Is.True);
     }
@@ -143,9 +141,11 @@ public class MongoTests
         var like2 = await GenerateLike(user, parentCommentId: parentComment.ID);
 
         await mongo.AddLikeToCommentAsync(parentComment, like1);
-        var fetchedComment = await mongo.AddLikeToCommentAsync(parentComment, like2);
+        await mongo.AddLikeToCommentAsync(parentComment, like2);
+        var fetchedComment = await mongo.GetByIdAsync<Comment>(parentComment.ID);
+
         Assert.That(fetchedComment, Is.Not.Null);
-        Assert.That(fetchedComment.Likes.Length, Is.EqualTo(2));
+        Assert.That(fetchedComment.Likes.Count, Is.EqualTo(2));
         Assert.That(fetchedComment.Likes.SingleOrDefault(l => l.ID == like1.ID), Is.EqualTo(like1));
         Assert.That(fetchedComment.Likes.SingleOrDefault(l => l.ID == like2.ID), Is.EqualTo(like2));
     }
@@ -159,9 +159,11 @@ public class MongoTests
         var like2 = await GenerateLike(user, parentPostId: parentPost.ID);
 
         await mongo.AddLikeToPostAsync(parentPost, like1);
-        var fetchedPost = await mongo.AddLikeToPostAsync(parentPost, like2);
+        await mongo.AddLikeToPostAsync(parentPost, like2);
+        var fetchedPost = await mongo.GetByIdAsync<Post>(parentPost.ID);
+
         Assert.That(fetchedPost, Is.Not.Null);
-        Assert.That(fetchedPost.Likes.Length, Is.EqualTo(2));
+        Assert.That(fetchedPost.Likes.Count, Is.EqualTo(2));
         Assert.That(fetchedPost.Likes.SingleOrDefault(l => l.ID == like1.ID), Is.EqualTo(like1));
         Assert.That(fetchedPost.Likes.SingleOrDefault(l => l.ID == like2.ID), Is.EqualTo(like2));
     }
@@ -177,6 +179,7 @@ public class MongoTests
         var comment3 = await GenerateComment(user, otherPost.ID);
 
         var childComments = await mongo.GetCommentsByParentPostIdAsync(parentPost.ID);
+
         Assert.That(childComments.Count, Is.EqualTo(2));
         Assert.That(childComments.SingleOrDefault(c => c.ID == comment1.ID), Is.EqualTo(comment1));
         Assert.That(childComments.SingleOrDefault(c => c.ID == comment2.ID), Is.EqualTo(comment2));

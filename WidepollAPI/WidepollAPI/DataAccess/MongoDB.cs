@@ -52,13 +52,17 @@ public class MongoStore : IDBReader, IDBWriter
         return await DB.Find<Comment>().ManyAsync(x => x.PostId == id);
     }
 
-    public Task<Comment> AddLikeToCommentAsync(Comment parent, Like like)
+    public async Task<Comment> AddLikeToCommentAsync(Comment parent, Like like)
     {
-        throw new NotImplementedException();
+        parent.Likes.Add(like);
+        await DB.Update<Comment>().MatchID(parent.ID).ModifyWith(parent).ExecuteAsync();
+        return parent;
     }
 
-    public Task<Post> AddLikeToPostAsync(Post parent, Like like)
+    public async Task<Post> AddLikeToPostAsync(Post parent, Like like)
     {
-        throw new NotImplementedException();
+        parent.Likes.Add(like);
+        await DB.Update<Post>().MatchID(parent.ID).ModifyWith(parent).ExecuteAsync();
+        return parent;
     }
 }
