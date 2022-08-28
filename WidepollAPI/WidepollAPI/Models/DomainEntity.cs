@@ -2,8 +2,7 @@
 
 namespace WidepollAPI.Models;
 
-public class DomainEntity : Entity, ICreatedOn
+public abstract class DomainEntity : Entity, ICreatedOn
 {
     public DateTime CreatedOn { get; set; }
 }
-

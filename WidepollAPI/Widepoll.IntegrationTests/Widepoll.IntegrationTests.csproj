@@ -14,6 +14,19 @@
     <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
     <PackageReference Include="NUnit.Analyzers" Version="3.3.0" />
     <PackageReference Include="coverlet.collector" Version="3.1.2" />
+    <PackageReference Include="MongoDB.Driver" Version="2.17.1" />
+    <PackageReference Include="MongoDB.Entities" Version="20.26.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="DataAccess\" />
+    <None Remove="MongoDB.Driver" />
+    <None Remove="MongoDB.Entities" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DataAccess\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WidepollAPI\WidepollAPI.csproj" />
+  </ItemGroup>
 </Project>

@@ -1,7 +1,13 @@
 ﻿namespace WidepollAPI.Models;
 
-public class User : DomainEntity
+public class User : DomainEntity, IEquatable<User>
 {
     public string Name { get; set; }
+
+    public bool Equals(User? other)
+    {
+        if (other is null) return false;
+        return Name == other.Name;
+    }
 }
 

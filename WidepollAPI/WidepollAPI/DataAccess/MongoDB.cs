@@ -19,9 +19,9 @@ public interface IDBReader
     public IReadOnlyCollection<Post> GetRecentPosts(int quantity);
 }
 
-public class MongoDB : IDBReader, IDBWriter
+public class MongoStore : IDBReader, IDBWriter
 {
-    public MongoDB()
+    public MongoStore()
     {
 
     }

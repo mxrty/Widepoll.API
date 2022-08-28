@@ -9,12 +9,12 @@ public static class BuilderExtensions
     {
         Task.Run(async () =>
         {
-            await DB.InitAsync("testDB",
+            await DB.InitAsync("dev",
             MongoClientSettings.FromConnectionString(
             "mongodb+srv://admin:deUsKxSO8O2zBxSr@cluster0.j8fil.mongodb.net/?retryWrites=true&w=majority"));
         }).GetAwaiter().GetResult();
-        services.AddSingleton<IDBWriter, MongoDB>();
-        services.AddSingleton<IDBReader, MongoDB>();
+        services.AddSingleton<IDBWriter, MongoStore>();
+        services.AddSingleton<IDBReader, MongoStore>();
 
         return services;
     }
