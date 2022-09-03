@@ -96,3 +96,14 @@ C:/Users/MS/Projects/widepoll2/server_new/WidepollAPI/WidepollAPI/obj/Debug/net6
 /Users/marty/Git/Widepoll.API/WidepollAPI/WidepollAPI/obj/Debug/net6.0/WidepollAPI.pdb
 /Users/marty/Git/Widepoll.API/WidepollAPI/WidepollAPI/obj/Debug/net6.0/WidepollAPI.genruntimeconfig.cache
 /Users/marty/Git/Widepoll.API/WidepollAPI/WidepollAPI/obj/Debug/net6.0/ref/WidepollAPI.dll
+/Users/marty/Git/Widepoll.API/WidepollAPI/WidepollAPI/bin/Debug/net6.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/marty/Git/Widepoll.API/WidepollAPI/WidepollAPI/bin/Debug/net6.0/Microsoft.Extensions.DependencyModel.dll
+/Users/marty/Git/Widepoll.API/WidepollAPI/WidepollAPI/bin/Debug/net6.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/Users/marty/Git/Widepoll.API/WidepollAPI/WidepollAPI/bin/Debug/net6.0/Microsoft.IdentityModel.Logging.dll
+/Users/marty/Git/Widepoll.API/WidepollAPI/WidepollAPI/bin/Debug/net6.0/Microsoft.IdentityModel.Protocols.dll
+/Users/marty/Git/Widepoll.API/WidepollAPI/WidepollAPI/bin/Debug/net6.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/Users/marty/Git/Widepoll.API/WidepollAPI/WidepollAPI/bin/Debug/net6.0/Microsoft.IdentityModel.Tokens.dll
+/Users/marty/Git/Widepoll.API/WidepollAPI/WidepollAPI/bin/Debug/net6.0/Scrutor.dll
+/Users/marty/Git/Widepoll.API/WidepollAPI/WidepollAPI/bin/Debug/net6.0/Swashbuckle.AspNetCore.Filters.dll
+/Users/marty/Git/Widepoll.API/WidepollAPI/WidepollAPI/bin/Debug/net6.0/Swashbuckle.AspNetCore.Filters.Abstractions.dll
+/Users/marty/Git/Widepoll.API/WidepollAPI/WidepollAPI/bin/Debug/net6.0/System.IdentityModel.Tokens.Jwt.dll

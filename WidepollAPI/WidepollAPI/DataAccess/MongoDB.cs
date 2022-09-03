@@ -15,6 +15,7 @@ public interface IDBWriter
 public interface IDBReader
 {
     public Task<T?> GetByIdAsync<T>(string id) where T : DomainEntity;
+    public Task<User?> GetUserByEmailAsync(string email);
     public Task<IReadOnlyCollection<Comment>> GetCommentsByParentPostIdAsync(string id);
     public IReadOnlyCollection<Post> GetRecentPosts(int quantity);
 }
@@ -64,5 +65,10 @@ public class MongoStore : IDBReader, IDBWriter
         parent.Likes.Add(like);
         await DB.Update<Post>().MatchID(parent.ID).ModifyWith(parent).ExecuteAsync();
         return parent;
+    }
+
+    public Task<User?> GetUserByEmailAsync(string email)
+    {
+        throw new NotImplementedException();
     }
 }
