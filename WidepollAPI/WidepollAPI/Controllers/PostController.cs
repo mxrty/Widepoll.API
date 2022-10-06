@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WidepollAPI.DataAccess;
 using WidepollAPI.Models;
@@ -6,7 +7,7 @@ using WidepollAPI.Ports;
 namespace WidepollAPI.Controllers;
 
 [ApiController]
-[Route("[controller]s")]
+[Route("posts")]
 public class PostController : ControllerBase
 {
     private readonly ILogger<PostController> _logger;
@@ -28,8 +29,8 @@ public class PostController : ControllerBase
         return result;
     }
 
-    [HttpGet("Recent")]
-    public async Task<ActionResult<Post[]>> GetMostRecentPosts(int quantity)
+    [HttpGet("recent")]
+    public async Task<ActionResult<Post[]>> GetMostRecentPosts(int quantity = 1)
     {
         if (quantity < 1) return BadRequest($"{quantity} is not a valid number of posts to get. Must be atleast 1.");
         if (quantity > 100) return BadRequest($"{quantity} is too many. Max is 100.");
@@ -39,7 +40,7 @@ public class PostController : ControllerBase
         return Ok(posts);
     }
 
-    [HttpPut]
+    [HttpPut, Authorize]
     public async Task<ActionResult> CreatePost(string authorId, [FromBody] PostDto dto)
     {
         var user = await _reader.GetByIdAsync<User>(authorId);

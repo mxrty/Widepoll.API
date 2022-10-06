@@ -4,29 +4,8 @@ using WidepollAPI.Models;
 
 namespace WidepollAPI.DataAccess;
 
-public interface IDBWriter
-{
-    public Task<T> InsertAsync<T>(T entity) where T : DomainEntity;
-    public Task<Comment> AddCommentIdToParentCommentAsync(Comment parent, string childId);
-    public Task<Comment> AddLikeToCommentAsync(Comment parent, Like like);
-    public Task<Post> AddLikeToPostAsync(Post parent, Like like);
-}
-
-public interface IDBReader
-{
-    public Task<T?> GetByIdAsync<T>(string id) where T : DomainEntity;
-    public Task<User?> GetUserByEmailAsync(string email);
-    public Task<IReadOnlyCollection<Comment>> GetCommentsByParentPostIdAsync(string id);
-    public IReadOnlyCollection<Post> GetRecentPosts(int quantity);
-}
-
 public class MongoStore : IDBReader, IDBWriter
 {
-    public MongoStore()
-    {
-
-    }
-
     public async Task<T> InsertAsync<T>(T entity) where T : DomainEntity
     {
         await entity.SaveAsync();
@@ -67,8 +46,9 @@ public class MongoStore : IDBReader, IDBWriter
         return parent;
     }
 
-    public Task<User?> GetUserByEmailAsync(string email)
+    public async Task<User?> GetUserByEmailAsync(string email)
     {
-        throw new NotImplementedException();
+        var users = await DB.Find<User>().ManyAsync(x => x.Email == email);
+        return users.SingleOrDefault();
     }
 }

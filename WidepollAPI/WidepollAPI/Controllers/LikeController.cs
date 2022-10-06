@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WidepollAPI.DataAccess;
 using WidepollAPI.Models;
@@ -6,7 +7,7 @@ using WidepollAPI.Ports;
 namespace WidepollAPI.Controllers;
 
 [ApiController]
-[Route("[controller]s")]
+[Route("likes")]
 public class LikeController : ControllerBase
 {
     private readonly ILogger<LikeController> _logger;
@@ -20,7 +21,7 @@ public class LikeController : ControllerBase
         _logger = logger;
     }
 
-    [HttpPost]
+    [HttpPost, Authorize]
     public async Task<ActionResult> CreateLike(string authorId, [FromBody] LikeDto dto)
     {
         if (dto.PostId is null && dto.CommentId is null) return BadRequest($"Comment and Post cannot both be null");

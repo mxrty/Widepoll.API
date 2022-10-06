@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WidepollAPI.DataAccess;
 using WidepollAPI.Models;
@@ -6,7 +7,7 @@ using WidepollAPI.Ports;
 namespace WidepollAPI.Controllers;
 
 [ApiController]
-[Route("[controller]s")]
+[Route("comments")]
 public class CommentController : ControllerBase
 {
     private readonly ILogger<CommentController> _logger;
@@ -36,7 +37,7 @@ public class CommentController : ControllerBase
         return Ok(results);
     }
 
-    [HttpPut]
+    [HttpPut, Authorize]
     public async Task<ActionResult> CreateComment(string authorId, [FromBody] CommentDto dto)
     {
         if (dto.ParentCommentId is null && dto.PostId is null) return BadRequest($"Comment must have a parent");

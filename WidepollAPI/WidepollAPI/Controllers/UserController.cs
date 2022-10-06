@@ -1,7 +1,6 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using WidepollAPI.Controllers.Authentication;
@@ -12,7 +11,7 @@ using WidepollAPI.Ports;
 namespace WidepollAPI.Controllers;
 
 [ApiController]
-[Route("[controller]s")]
+[Route("users")]
 public class UserController : ControllerBase
 {
     private readonly ILogger<UserController> _logger;
@@ -34,13 +33,6 @@ public class UserController : ControllerBase
         if (result is null) return NotFound();
         return result;
     }
-
-    //[HttpGet, Authorize]
-    //public ActionResult<string> GetMe()
-    //{
-    //    var userName = _userService.GetMyName();
-    //    return Ok(userName);
-    //}
 
     [HttpPost("register")]
     public async Task<ActionResult<User>> Register([FromBody] UserDto dto)
