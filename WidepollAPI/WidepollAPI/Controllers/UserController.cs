@@ -4,6 +4,7 @@ using System.Security.Cryptography;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using WidepollAPI.Controllers.Authentication;
+using WidepollAPI.Controllers.Translators;
 using WidepollAPI.DataAccess;
 using WidepollAPI.Models;
 using WidepollAPI.Ports;
@@ -17,34 +18,37 @@ public class UserController : ControllerBase
     private readonly ILogger<UserController> _logger;
     private readonly IDBWriter _writer;
     private readonly IDBReader _reader;
+    private readonly IUserTranslator _userTranslator;
 
-    public UserController(IDBReader reader, IDBWriter writer, ILogger<UserController> logger)
+    public UserController(IDBReader reader, IDBWriter writer, IUserTranslator userTranslator, ILogger<UserController> logger)
     {
         _writer = writer;
         _reader = reader;
         _logger = logger;
+        _userTranslator = userTranslator;
     }
 
     [HttpGet]
-    public async Task<ActionResult<User>> GetUser(string id)
+    public async Task<ActionResult<UserDto>> GetUser(string id)
     {
 
         var result = await _reader.GetByIdAsync<User>(id);
         if (result is null) return NotFound();
-        return result;
+        return _userTranslator.ToDto(result);
     }
 
     [HttpPost("register")]
-    public async Task<ActionResult<User>> Register([FromBody] UserDto dto)
+    public async Task<ActionResult<UserDto>> Register([FromBody] UserCredentialsDto dto)
     {
         CreatePasswordHash(dto.Password, out byte[] passwordHash, out byte[] passwordSalt);
-        var user = new User { Email = dto.Email, PasswordHash = passwordHash, PasswordSalt = passwordSalt };
-        var createdUser = await _writer.InsertAsync(user);
+        var newUser = new User { Email = dto.Email, PasswordHash = passwordHash, PasswordSalt = passwordSalt };
+        var result = await _writer.InsertAsync(newUser);
+        var createdUser = _userTranslator.ToDto(result);
         return Ok(createdUser);
     }
 
     [HttpPost("login")]
-    public async Task<ActionResult<string>> Login([FromBody] UserDto dto)
+    public async Task<ActionResult<string>> Login([FromBody] UserCredentialsDto dto)
     {
         var existingUser = await _reader.GetUserByEmailAsync(dto.Email);
         if (existingUser is null) return BadRequest("User not found.");

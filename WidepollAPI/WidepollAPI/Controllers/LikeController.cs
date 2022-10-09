@@ -22,11 +22,12 @@ public class LikeController : ControllerBase
     }
 
     [HttpPost, Authorize]
-    public async Task<ActionResult> CreateLike(string authorId, [FromBody] LikeDto dto)
+    public async Task<ActionResult> CreateLike([FromBody] LikeDto dto)
     {
         if (dto.PostId is null && dto.CommentId is null) return BadRequest($"Comment and Post cannot both be null");
         if (dto.PostId is not null && dto.CommentId is not null) return BadRequest($"Like cannot belong to both a post and a comment");
 
+        var authorId = dto.AuthorId;
         var user = await _reader.GetByIdAsync<User>(authorId);
         if (user is null) return BadRequest($"User {authorId} was not found. Must be a valid user.");
 

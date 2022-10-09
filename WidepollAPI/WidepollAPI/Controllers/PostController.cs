@@ -41,8 +41,9 @@ public class PostController : ControllerBase
     }
 
     [HttpPut, Authorize]
-    public async Task<ActionResult> CreatePost(string authorId, [FromBody] PostDto dto)
+    public async Task<ActionResult> CreatePost([FromBody] PostDto dto)
     {
+        var authorId = dto.AuthorId;
         var user = await _reader.GetByIdAsync<User>(authorId);
         if (user is null) return BadRequest($"User {authorId} was not found. Must be a valid user.");
 

@@ -5,6 +5,8 @@ namespace WidepollAPI.Ports;
 public class StatementDto
 {
     [Required]
+    public string AuthorId { get; set; }
+    [Required]
     public string Left { get; set; }
     [Required]
     public string Link { get; set; }

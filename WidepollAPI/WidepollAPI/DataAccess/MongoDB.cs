@@ -19,6 +19,15 @@ public class MongoStore : IDBReader, IDBWriter
 
     public async Task<T?> GetByIdAsync<T>(string id) where T : DomainEntity
     {
+        /*
+         * Projection with exclusions: it is also possible to specify an exclusion projection with a new expression like so:
+
+            var res = await DB.Find<Author>()
+                  .Match(a => a.ID == "xxxxxxxxxxx")
+                  .ProjectExcluding(a => new { a.Age, a.Name })
+                  .ExecuteSingleAsync();
+            doing so will return an Author entity with all the properties populated except for the Age and Name properties.
+        */
         return await DB.Find<T>().OneAsync(id);
     }
 

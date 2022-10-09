@@ -38,11 +38,12 @@ public class CommentController : ControllerBase
     }
 
     [HttpPut, Authorize]
-    public async Task<ActionResult> CreateComment(string authorId, [FromBody] CommentDto dto)
+    public async Task<ActionResult> CreateComment([FromBody] CommentDto dto)
     {
         if (dto.ParentCommentId is null && dto.PostId is null) return BadRequest($"Comment must have a parent");
         if (dto.ParentCommentId is not null && dto.PostId is not null) return BadRequest($"Comment can only have one parent");
 
+        var authorId = dto.AuthorId;
         var user = await _reader.GetByIdAsync<User>(authorId);
         if (user is null) return BadRequest($"User {authorId} was not found. Must be a valid user.");
 

@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
-using WidepollAPI.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,7 +40,9 @@ builder.Services.AddCors(options => options.AddPolicy(name: "NgOrigins",
     {
         policy.WithOrigins("http://localhost:7013").AllowAnyMethod().AllowAnyHeader();
     }));
-BuilderExtensions.ConfigureDataAccess(builder.Services);
+
+WidepollAPI.DataAccess.BuilderExtensions.ConfigureDataAccess(builder.Services);
+WidepollAPI.Controllers.BuilderExtensions.ConfigureControllers(builder.Services);
 
 var app = builder.Build();
 
@@ -53,13 +54,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors("NgOrigins");
-
 app.UseHttpsRedirection();
-
 app.UseAuthentication();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
