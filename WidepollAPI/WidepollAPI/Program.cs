@@ -25,12 +25,12 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        var a = builder.Configuration.GetSection("JWT:IssuerSigningKeyToken").Value;
+        var jwtConfig = builder.Configuration.GetSection("JWT:IssuerSigningKeyToken").Value;
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuerSigningKey = true,
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
-                .GetBytes(a)),
+                .GetBytes(jwtConfig)),
             ValidateIssuer = false,
             ValidateAudience = false
         };
@@ -41,7 +41,7 @@ builder.Services.AddCors(options => options.AddPolicy(name: "NgOrigins",
         policy.WithOrigins("http://localhost:7013").AllowAnyMethod().AllowAnyHeader();
     }));
 
-WidepollAPI.DataAccess.BuilderExtensions.ConfigureDataAccess(builder.Services);
+WidepollAPI.DataAccess.BuilderExtensions.ConfigureDataAccess(builder.Services, builder.Configuration.GetSection("Mongo:ConnectionString").Value);
 WidepollAPI.Controllers.BuilderExtensions.ConfigureControllers(builder.Services);
 
 var app = builder.Build();
